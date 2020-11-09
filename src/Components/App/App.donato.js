@@ -16,19 +16,9 @@ const App = () => {
     name: "",
     temp: null,
     description: "",
-    tempMax:'',
-    tempMin:'',
     humidity: null,
     message: null,
-    icon:null,
   });
-  // const [forecastWeater, setForecastWeather] = useState({
-  //   id:'',
-  //   data:'',
-  //   description:'',
-  //   temperature:'',
-
-  // })
   /**
    *
    * @param {*} evt
@@ -45,31 +35,20 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(">>>>>>>>>>>>>>>>>>", data);
-        fetch(
-          `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}`
-        )
-        .then((res2) => res2.json())
-        .then((data2 =>{
-          console.log(">>>data2", data2)
-        } ))
         if (data.cod !== "404") {
           const {
-            main: { humidity, temp, temp_max, temp_min },
+            main: { humidity, temp },
             weather,
             name,
           } = data;
-          console.log(humidity, temp, weather[0].description, name, weather[0].icon, temp_max, temp_min);
+          console.log(humidity, temp, weather[0].description, name);
           let tempCelsius = Number.parseFloat(
             temp - kelvinConstant
           ).toPrecision(4);
-
           let weatherObj = {
             name,
-            temp: Math.floor(tempCelsius),
-            tempMax: Math.floor(temp_max - 273.15),
-            tempMin: Math.floor(temp_min - 273.15),
+            temp: tempCelsius,
             description: weather[0].description,
-            icon:weather[0].icon,
             humidity,
           };
           setWeatherCity(weatherObj);
@@ -82,31 +61,28 @@ const App = () => {
         console.log(error);
       });
   };
-
+  /**
+   *
+   */
   return (
     <div className="App">
-      <h1>Weather App</h1>
-      <div className="app-input">
-        <form onSubmit={getWeather}>
-          <input
-            onChange={handlerFieldCity}
-            type="text"
-            placeholder="City"
-            name="city"
-            value={city}
-          />
-        </form>
-      </div>
-
+      <h2>app</h2>
+      <form onSubmit={getWeather}>
+        <input
+          onChange={handlerFieldCity}
+          type="text"
+          placeholder="City"
+          name="city"
+          value={city}
+        />
+        <button>Submit</button>
+      </form>
       {!weatherCity.message ? (
         <Weather
-          name={weatherCity.name}
+          city={weatherCity.city}
           description={weatherCity.description}
           temperature={weatherCity.temp}
-          tempMax={weatherCity.tempMax}
-          tempMin={weatherCity.tempMin}
           humidity={weatherCity.humidity}
-          icon={weatherCity.icon}
         />
       ) : (
         <p>{weatherCity.message}</p>

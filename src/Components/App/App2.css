@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Montserrat', sans-serif;
+}
+
+body{
+ background: url(../../img/bg.jpg);
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 100vh;
+
+}
+
+.Appp{
+ width: 780px;
+ margin: auto;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ padding: 20px;
+}
+
+.appp-input{
+ display: flex;
+ flex-direction: column;
+}
+
+.appp-weather{
+ width: 100%;
+ min-height: 200px;
+}
+
+.appp-input > h1{
+ color: #535354;
+ font-size: 40px;
+ margin-bottom: 10px;
+}
+.appp-input{
+ padding: 20px;
+}
+
+.appp-input *{
+ margin-top: 20px;
+
+}
+
+.appp-input > input{
+ padding: 11px;
+ border-radius: 99px;
+ outline: none;
+ border: none;
+ color: rgb(133, 132, 132);
+}
+
+.appp-input > button{
+ background-color: rgb(83, 83, 84);
+ color: white;
+ font-size: 12px;
+ padding: 10px 60px;
+ border-radius: 99px;
+ margin: 10px 0px;
+ cursor: pointer;
+ outline: none;
+ border: none;
+ transition: ease .5s;
+}
+
+.appp-input > button:hover{
+ background-color: rgba(237, 236, 240, 0.705);
+ transform: scale(1.01);
+ color: black;
+}
